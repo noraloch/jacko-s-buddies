@@ -1,2 +1,2 @@
-# jacko-s-buddies
+# Jacko's Buddies
 kitty gram
