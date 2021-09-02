@@ -1,2 +1,2 @@
 # Jacko's Buddies
-kitty gram
+A kitty gram that allows us to browse images of cats
