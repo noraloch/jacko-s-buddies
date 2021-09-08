@@ -16,10 +16,10 @@
         android:label="fragment_browse"
         tools:layout="@layout/fragment_browse" >
         <action
-            android:id="@+id/action_browseFragment_to_settingFragment"
+            android:id="@+id/action_settingsFragment"
             app:destination="@id/settingFragment" />
         <action
-            android:id="@+id/action_browseFragment_to_detailsFragment"
+            android:id="@+id/action_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
