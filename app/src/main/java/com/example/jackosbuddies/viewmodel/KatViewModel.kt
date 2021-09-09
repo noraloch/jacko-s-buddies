@@ -17,9 +17,24 @@ class KatViewModel : ViewModel() {
     val katState: LiveData<ApiState<List<Kat>>>
         get() = _katState
 
-    fun fetchKatList(limit: Int) {
+    var size = "full"
+    var limit = 0
+    var page = 0
+        set(value) {
+            if (value > field && isNextPage) fetchKatList(limit, size)
+            field = value
+        }
+    var isNextPage = true
+
+    fun fetchKatList(limit: Int, size: String) {
+        this.limit = limit
+        this.size = size
         viewModelScope.launch(Dispatchers.IO) {
-            KatRepo.getKatState(limit).collect { katState -> _katState.postValue(katState) }
+            KatRepo.getKatState(limit, page, size).collect { katState ->
+                isNextPage =
+                    !(katState is ApiState.Failure && katState.errorMsg == KatRepo.NO_DATA_FOUND)
+                _katState.postValue(katState)
+            }
         }
     }
 }
