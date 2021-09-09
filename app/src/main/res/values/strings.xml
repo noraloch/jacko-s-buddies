@@ -7,7 +7,8 @@
     <string name="limit">Limit</string>
     <string name="apply">apply</string>
     <string name="size">Size</string>
-    <string name="small">Small</string>
-    <string name="med">Medium</string>
-    <string name="full">Full</string>
+    <string name="small">small</string>
+    <string name="med">medium</string>
+    <string name="full">full</string>
+    <string name="imageSize">Image Size</string>
 </resources>

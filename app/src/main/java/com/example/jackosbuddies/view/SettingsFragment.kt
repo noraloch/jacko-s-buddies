@@ -26,11 +26,19 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private fun initView() = with(binding) {
         sliderLimit.value = katViewModel.limit.toFloat()
+        var radioText = ""
         sliderLimit.addOnChangeListener { _, value, _ ->
             toggleApply(katViewModel.limit != value.toInt())
         }
+//        val checkedRadioButtonId = radioGroup.checkedRadioButtonId
+        // Returns View.NO_ID if nothing is checked.
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            radioText = group.findViewById<View>(checkedId).transitionName
+
+            toggleApply(katViewModel.size != radioText)
+        }
         btnApply.setOnClickListener {
-            katViewModel.fetchKatList(sliderLimit.value.toInt())
+            katViewModel.fetchKatList(sliderLimit.value.toInt(), radioText)
         }
     }
 

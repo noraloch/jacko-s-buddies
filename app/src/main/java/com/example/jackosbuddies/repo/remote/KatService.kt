@@ -15,6 +15,7 @@ interface KatService {
     suspend fun getKatImages(
         @Query("limit") limit: Int,
         @Query("page") page: Int,
+        @Query("size") size: String,
         @Query("order") order: Order
     ): Response<List<Kat>>
 }

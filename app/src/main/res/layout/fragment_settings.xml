@@ -9,7 +9,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label_slider_limit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:labelFor="@id/slider_limit"
         android:text="@string/limit"
@@ -25,16 +25,50 @@
         android:valueFrom="0.0"
         android:valueTo="100.0"
         app:layout_constraintTop_toBottomOf="@id/label_slider_limit" />
+
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/label_dropdown_size"
+        android:id="@+id/label_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:labelFor="@id/dropdown_size"
-        android:text="@string/size"
+        android:labelFor="@id/radio_group"
+        android:text="@string/imageSize"
         android:textAppearance="?attr/textAppearanceHeadline5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-<!---->
+        app:layout_constraintTop_toBottomOf="@id/slider_limit" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/full"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/label_radio_group"
+        app:layout_constraintTop_toBottomOf="@id/slider_limit">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/full"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/full"
+            android:transitionName="@string/full"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+
+            android:id="@+id/med"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/med"
+            android:transitionName="@string/med"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+
+            android:id="@+id/small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/small"
+            android:transitionName="@string/small"/>
+    </RadioGroup>
 
 
     <com.google.android.material.button.MaterialButton
@@ -45,5 +79,5 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
