@@ -16,6 +16,7 @@ interface KatService {
         @Query("limit") limit: Int,
         @Query("page") page: Int,
         @Query("size") size: String,
+        @Query("has_breeds") has_breeds: Boolean,
         @Query("order") order: Order
     ): Response<List<Kat>>
 }

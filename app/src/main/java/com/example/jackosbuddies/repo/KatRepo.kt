@@ -16,13 +16,15 @@ object KatRepo {
         limit: Int,
         page: Int = 1,
         size: String,
+        has_breeds: Boolean,
         order: Order = Order.DESC
     ) = flow {
         emit(ApiState.Loading)
 
 //        Log.d(TAG, "getKatState: katService.getKatImages(limit, page, size, order)")
-        val katResponse = katService.getKatImages(limit, page, size, order)
+        val katResponse = katService.getKatImages(limit, page, size, has_breeds, order)
         Log.d(TAG, "size in endpoint = $size")
+        Log.d(TAG, "has_breeds in endpoint = $has_breeds")
         Log.d(TAG, "getKatState: katResponse = ${katResponse.body()}")
 
         val state = if (katResponse.isSuccessful) {

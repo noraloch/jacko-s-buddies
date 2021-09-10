@@ -27,18 +27,24 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun initView() = with(binding) {
         sliderLimit.value = katViewModel.limit.toFloat()
         var radioText = ""
+        var has_breeds = katViewModel.hasBreeds
         sliderLimit.addOnChangeListener { _, value, _ ->
             toggleApply(katViewModel.limit != value.toInt())
         }
-//        val checkedRadioButtonId = radioGroup.checkedRadioButtonId
+
+        btnApply.setOnClickListener {
+            katViewModel.fetchKatList(sliderLimit.value.toInt(), radioText, has_breeds )
+        }
+        breedSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            has_breeds = true
+            toggleApply(katViewModel.hasBreeds != has_breeds)
+        }
+
         // Returns View.NO_ID if nothing is checked.
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             radioText = group.findViewById<View>(checkedId).transitionName
 
             toggleApply(katViewModel.size != radioText)
-        }
-        btnApply.setOnClickListener {
-            katViewModel.fetchKatList(sliderLimit.value.toInt(), radioText)
         }
     }
 

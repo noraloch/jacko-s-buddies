@@ -11,4 +11,5 @@
     <string name="med">medium</string>
     <string name="full">full</string>
     <string name="imageSize">Image Size</string>
+    <string name="has_breeds">Has Breeds</string>
 </resources>
