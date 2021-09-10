@@ -36,5 +36,5 @@ data class Breed(
     val vetstreetUrl: String?,
     val vocalisation: Int?,
     val weight: Weight?,
-    val wikipediaUrl: String
+    val wikipediaUrl: String?
 )

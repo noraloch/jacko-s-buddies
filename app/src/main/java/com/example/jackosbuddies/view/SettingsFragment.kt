@@ -18,6 +18,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var binding: FragmentSettingsBinding
     private val katViewModel by activityViewModels<KatViewModel>()
 
+    private val boolObject = object {
+        var limitChange = false
+        var sizeChange = false
+        var breedChange = false
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSettingsBinding.bind(view)
@@ -27,25 +33,48 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun initView() = with(binding) {
         sliderLimit.value = katViewModel.limit.toFloat()
         var radioText = ""
-        var has_breeds = katViewModel.hasBreeds
-        sliderLimit.addOnChangeListener { _, value, _ ->
-            toggleApply(katViewModel.limit != value.toInt())
+        var hasBreeds = katViewModel.hasBreeds
+
+
+        // listeners
+        btnApply.setOnClickListener {
+
+            katViewModel.fetchKatList(sliderLimit.value.toInt(), radioText, hasBreeds)
         }
 
-        btnApply.setOnClickListener {
-            katViewModel.fetchKatList(sliderLimit.value.toInt(), radioText, has_breeds )
+        sliderLimit.addOnChangeListener { _, value, _ ->
+            if (katViewModel.limit != value.toInt()) {
+                katViewModel.limit = value.toInt()
+                boolObject.limitChange = true
+            }
+            checkAllToggle()
+            boolObject.limitChange = false
         }
+
         breedSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            has_breeds = true
-            toggleApply(katViewModel.hasBreeds != has_breeds)
+            hasBreeds = isChecked
+            if (katViewModel.hasBreeds != hasBreeds) {
+                katViewModel.hasBreeds = isChecked
+                boolObject.breedChange = true
+            }
+            checkAllToggle()
+            boolObject.breedChange = false
         }
 
         // Returns View.NO_ID if nothing is checked.
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
             radioText = group.findViewById<View>(checkedId).transitionName
-
-            toggleApply(katViewModel.size != radioText)
+            if (katViewModel.size != radioText) {
+                katViewModel.size = radioText
+                boolObject.sizeChange = true
+            }
+            checkAllToggle()
+            boolObject.sizeChange = false
         }
+
+    }
+    private  fun checkAllToggle() {
+        toggleApply((boolObject.limitChange || boolObject.breedChange || boolObject.sizeChange))
     }
 
     private fun toggleApply(dataChanged: Boolean) {

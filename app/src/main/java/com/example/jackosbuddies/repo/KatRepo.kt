@@ -13,16 +13,24 @@ object KatRepo {
     private val katService by lazy { RetrofitInstance.katService }
 
     fun getKatState(
-        limit: Int,
-        page: Int = 1,
+        limit: String?,
+        page: String?,
+        order: String?,
         size: String,
-        has_breeds: Boolean,
-        order: Order = Order.DESC
+        has_breeds: String
     ) = flow {
         emit(ApiState.Loading)
 
 //        Log.d(TAG, "getKatState: katService.getKatImages(limit, page, size, order)")
-        val katResponse = katService.getKatImages(limit, page, size, has_breeds, order)
+        val queryMap = listOfNotNull(
+                limit?.let { "limit" to it },
+                page?.let { "page" to it },
+                size.let { "size" to it },
+                has_breeds.let {"has_breeds" to it},
+                order?.let {"order" to it}
+        ).toMap()
+        val katResponse = katService.getKatImages(queryMap)
+
         Log.d(TAG, "size in endpoint = $size")
         Log.d(TAG, "has_breeds in endpoint = $has_breeds")
         Log.d(TAG, "getKatState: katResponse = ${katResponse.body()}")

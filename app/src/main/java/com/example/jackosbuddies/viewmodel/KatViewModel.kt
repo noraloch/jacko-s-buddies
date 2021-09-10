@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.jackosbuddies.model.Kat
 import com.example.jackosbuddies.repo.KatRepo
 import com.example.jackosbuddies.util.ApiState
+import com.example.jackosbuddies.util.Order
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -25,15 +26,15 @@ class KatViewModel : ViewModel() {
             if (value > field && isNextPage) fetchKatList(limit, size, hasBreeds)
             field = value
         }
-    var isNextPage = true
+    private var isNextPage = true
 
     fun fetchKatList(limit: Int, size: String, hasBreeds: Boolean) {
         this.limit = limit
         this.size = size
         this.hasBreeds = hasBreeds
         viewModelScope.launch(Dispatchers.IO) {
-            KatRepo.getKatState(limit, page, size, hasBreeds).collect { katState ->
-                isNextPage =
+            KatRepo.getKatState(limit.toString(), page.toString(), Order.DESC.name, size, hasBreeds.toString()).collect { katState ->
+                 isNextPage =
                     !(katState is ApiState.Failure && katState.errorMsg == KatRepo.NO_DATA_FOUND)
                 _katState.postValue(katState)
             }
