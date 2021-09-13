@@ -21,5 +21,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.bottomNavigation.setupWithNavController(navHostFragment.navController)
+        katViewModel.fetchKatList(10,"full", null, null, false, 0)
     }
 }

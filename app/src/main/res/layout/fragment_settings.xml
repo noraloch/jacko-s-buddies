@@ -55,7 +55,6 @@
             android:transitionName="@string/full"/>
 
         <com.google.android.material.radiobutton.MaterialRadioButton
-
             android:id="@+id/med"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -80,8 +79,62 @@
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_apply"
+        app:layout_constraintEnd_toStartOf="@id/label_breeds"
         app:layout_constraintHorizontal_bias="0.0"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_breeds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/breed_menu"
+        android:text="@string/breeds"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/breed_switch" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/breed_menu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/select_breed"
+        app:layout_constraintTop_toBottomOf="@id/label_breeds">
+
+        <AutoCompleteTextView
+            android:id="@+id/breed_menu_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label_categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/category_menu"
+        android:text="@string/categories"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/breed_menu" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/category_menu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/select_categories"
+        app:layout_constraintTop_toBottomOf="@id/label_categories">
+
+        <AutoCompleteTextView
+            android:id="@+id/category_menu_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 
     <com.google.android.material.button.MaterialButton
@@ -90,6 +143,7 @@
         android:layout_height="wrap_content"
         android:text="@string/apply"
         android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/breed_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

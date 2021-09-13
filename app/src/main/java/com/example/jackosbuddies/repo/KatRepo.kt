@@ -13,22 +13,27 @@ object KatRepo {
     private val katService by lazy { RetrofitInstance.katService }
 
     fun getKatState(
-        limit: String?,
-        page: String?,
-        order: String?,
-        size: String,
-        has_breeds: String
+        limit: String,
+        page: String,
+        size: String?,
+        order: String,
+        has_breeds: String?,
+        breedId: String?,
+        categoryIds: String?
     ) = flow {
         emit(ApiState.Loading)
 
 //        Log.d(TAG, "getKatState: katService.getKatImages(limit, page, size, order)")
         val queryMap = listOfNotNull(
-                limit?.let { "limit" to it },
-                page?.let { "page" to it },
-                size.let { "size" to it },
-                has_breeds.let {"has_breeds" to it},
-                order?.let {"order" to it}
+            limit?.let { "limit" to it },
+            page?.let { "page" to it },
+            order?.let {"order" to it},
+            size?.let { "size" to it },
+            has_breeds?.let {"has_breeds" to it},
+//            breedId?.let { "breed_id" to it },
+//            categoryIds?.let { "category_ids" to it }
         ).toMap()
+
         val katResponse = katService.getKatImages(queryMap)
 
         Log.d(TAG, "size in endpoint = $size")
@@ -49,7 +54,7 @@ object KatRepo {
             ApiState.Failure("Error fetching data.")
         }
 
-        Log.d(TAG, "getKatState: emit(state)")
+//        Log.d(TAG, "getKatState: emit(state)")
         emit(state)
     }
 

@@ -12,4 +12,8 @@
     <string name="full">full</string>
     <string name="imageSize">Image Size</string>
     <string name="has_breeds">Has Breeds</string>
+    <string name="categories">Categories</string>
+    <string name="select_categories">Select Categories</string>
+    <string name="select_breed">Select Breed</string>
+    <string name="breeds">Breeds</string>
 </resources>

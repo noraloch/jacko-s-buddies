@@ -10,8 +10,9 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15364583333333334" />
         <entry key="app/src/main/res/layout/fragment_browse.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.10007420683788221" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_kat.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/setting_list_item.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/size_dropdown_menu.xml" value="0.17760416666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

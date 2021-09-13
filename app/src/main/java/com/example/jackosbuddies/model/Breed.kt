@@ -1,6 +1,7 @@
 package com.example.jackosbuddies.model
 
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -8,6 +9,7 @@ data class Breed(
     val adaptability: Int?,
     val affectionLevel: Int?,
     val altNames: String?,
+    @Json(name="cfa_url")
     val cfaUrl: String?,
     val childFriendly: Int?,
     val countryCode: String?,
